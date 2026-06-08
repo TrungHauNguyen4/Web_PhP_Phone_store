@@ -1,0 +1,110 @@
+<?php
+// Products list view
+include APP_PATH . '/views/layouts/header.php';
+
+// Get products from database
+require_once APP_PATH . '/models/Product.php';
+$productModel = new Product();
+
+
+// Handle search and filter
+$search = $_GET['search'] ?? '';
+$min_price = $_GET['min_price'] ?? '';
+$max_price = $_GET['max_price'] ?? '';
+
+if (!empty($search)) {
+    $products = $productModel->search($search);
+} elseif (!empty($min_price) && !empty($max_price)) {
+    $products = $productModel->getByPriceRange($min_price, $max_price);
+} else {
+    $products = $productModel->getAll();
+}
+?>
+
+<h2>Danh sách sản phẩm</h2>
+
+<!-- Search and Filter Form -->
+<div style="background: white; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+    <form method="GET" action="<?php echo getBaseUrl(); ?>/?page=products" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: end;">
+        <div>
+            <label for="search" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">🔍 Tìm kiếm</label>
+            <input type="text" id="search" name="search" value="<?php echo escape($search); ?>" 
+                   placeholder="Tên sản phẩm, CPU, RAM..." 
+                   style="width: 100%; padding: 0.75rem; border: 1px solid #bdc3c7; border-radius: 4px;">
+        </div>
+        <div>
+            <label for="min_price" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">💰 Giá tối thiểu</label>
+            <input type="number" id="min_price" name="min_price" value="<?php echo escape($min_price); ?>" 
+                   placeholder="VNĐ" 
+                   style="width: 100%; padding: 0.75rem; border: 1px solid #bdc3c7; border-radius: 4px;">
+        </div>
+        <div>
+            <label for="max_price" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">💰 Giá tối đa</label>
+            <input type="number" id="max_price" name="max_price" value="<?php echo escape($max_price); ?>" 
+                   placeholder="VNĐ" 
+                   style="width: 100%; padding: 0.75rem; border: 1px solid #bdc3c7; border-radius: 4px;">
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" 
+                    style="width: 100%; padding: 0.75rem; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                🔎 Tìm kiếm
+            </button>
+        </div>
+        <div>
+            <a href="<?php echo getBaseUrl(); ?>/?page=products" 
+               style="display: block; padding: 0.75rem; background: #95a5a6; color: white; text-decoration: none; border-radius: 4px; text-align: center; cursor: pointer;">
+                ↺ Reset
+            </a>
+        </div>
+    </form>
+</div>
+
+<div style="margin: 1.5rem 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem;">
+    <?php if (!empty($products)): ?>
+        <?php foreach ($products as $product): ?>
+            <div style="background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s;">
+                <div style="background: #f0f0f0; height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                    <?php
+                    $image = $product['image'] ?? '';
+                    $hasImage = !empty($image);
+                    $imageUrl = $hasImage ? (getBaseUrl() . '/assets/images/' . $image) : '';
+                    ?>
+                    <?php if ($hasImage): ?>
+                        <img
+                            src="<?php echo $imageUrl; ?>"
+                            alt="<?php echo escape($product['name']); ?>"
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                        >
+                    <?php else: ?>
+                        <span style="font-size: 3rem;">📱</span>
+                    <?php endif; ?>
+                </div>
+                <div style="padding: 1rem;">
+                    <h4 style="margin-bottom: 0.5rem;"><?php echo escape($product['name']); ?></h4>
+                    <p style="color: #7f8c8d; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                        CPU: <?php echo escape($product['cpu']); ?><br>
+                        RAM: <?php echo escape($product['ram']); ?><br>
+                        SSD: <?php echo escape($product['ssd']); ?>
+                    </p>
+                    <p style="font-size: 1.2rem; color: #e74c3c; font-weight: bold; margin-bottom: 1rem;">
+                        <?php echo formatPrice($product['price']); ?> VNĐ
+                    </p>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <a href="<?php echo getBaseUrl(); ?>/?page=product&id=<?php echo $product['id']; ?>" class="btn btn-primary" style="flex: 1; text-align: center;">Chi tiết</a>
+                        <form method="POST" action="<?php echo getBaseUrl(); ?>/?page=cart&action=add" style="flex: 1;">
+                            <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                            <input type="number" name="quantity" value="1" min="1" max="<?php echo $product['quantity']; ?>" style="width: 100%; padding: 0.4rem; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 0.5rem; box-sizing: border-box;">
+                            <button type="submit" class="btn btn-success" style="width: 100%; padding: 0.5rem;">Thêm giỏ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p style="grid-column: 1/-1; text-align: center; padding: 2rem;">Không có sản phẩm nào</p>
+    <?php endif; ?>
+</div>
+
+<?php
+include APP_PATH . '/views/layouts/footer.php';
+?>

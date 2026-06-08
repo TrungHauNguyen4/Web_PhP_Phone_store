@@ -1,0 +1,168 @@
+/* Responsive Design - Mobile, Tablet, Desktop */
+
+/* Tablets and small desktops (768px and below) */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    header .container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    header h1 {
+        font-size: 1.4rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+    
+    nav a {
+        display: block;
+        padding: 0.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.4rem; }
+    h3 { font-size: 1.2rem; }
+    
+    /* Grid adjustments */
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+    }
+    
+    table {
+        font-size: 0.9rem;
+    }
+    
+    th, td {
+        padding: 0.5rem;
+    }
+}
+
+/* Mobile devices (480px and below) */
+@media (max-width: 480px) {
+    body {
+        font-size: 0.95rem;
+    }
+    
+    .container {
+        padding: 0 8px;
+    }
+    
+    header h1 {
+        font-size: 1.2rem;
+    }
+    
+    main {
+        padding: 1rem 0;
+    }
+    
+    h1 { font-size: 1.4rem; }
+    h2 { font-size: 1.2rem; }
+    h3 { font-size: 1rem; }
+    
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+        width: 100%;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Full width forms */
+    form input,
+    form textarea,
+    form select {
+        margin-bottom: 1rem;
+    }
+    
+    /* Hide on mobile */
+    .hide-mobile {
+        display: none !important;
+    }
+    
+    /* Stack grid */
+    [style*="grid"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    table {
+        font-size: 0.85rem;
+    }
+    
+    th, td {
+        padding: 0.4rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+/* Landscape tablets */
+@media (orientation: landscape) and (max-height: 500px) {
+    header,
+    footer {
+        padding: 0.5rem 0;
+    }
+    
+    main {
+        padding: 1rem 0;
+        min-height: auto;
+    }
+}
+
+/* Large desktops (1200px and above) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+    
+    /* Show on desktop */
+    .show-desktop {
+        display: block !important;
+    }
+}
+
+/* Print styles */
+@media print {
+    header,
+    footer,
+    nav,
+    .btn {
+        display: none;
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+    button,
+    a {
+        padding: 0.875rem 1.75rem;
+        min-height: 44px;
+    }
+}
