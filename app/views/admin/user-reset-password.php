@@ -28,14 +28,24 @@
                         
                         <div class="mb-3">
                             <label for="new_password" class="form-label">Mật khẩu mới</label>
-                            <input type="password" class="form-control" id="new_password" name="new_password" 
-                                   required minlength="6" placeholder="Nhập mật khẩu mới (ít nhất 6 ký tự)">
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="new_password" name="new_password" 
+                                       required minlength="6" placeholder="Nhập mật khẩu mới (ít nhất 6 ký tự)">
+                                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('new_password', this)">
+                                    👁️
+                                </button>
+                            </div>
                         </div>
                         
                         <div class="mb-3">
                             <label for="confirm_password" class="form-label">Xác nhận mật khẩu mới</label>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" 
-                                   required minlength="6" placeholder="Nhập lại mật khẩu mới">
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" 
+                                       required minlength="6" placeholder="Nhập lại mật khẩu mới">
+                                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('confirm_password', this)">
+                                    👁️
+                                </button>
+                            </div>
                         </div>
                         
                         <div class="d-flex gap-2">

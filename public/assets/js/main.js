@@ -111,6 +111,20 @@ function debounce(func, delay) {
 }
 
 /**
+ * Toggle password visibility
+ */
+function togglePassword(inputId, button) {
+    const input = document.getElementById(inputId);
+    if (input.type === 'password') {
+        input.type = 'text';
+        button.textContent = '🙈';
+    } else {
+        input.type = 'password';
+        button.textContent = '👁️';
+    }
+}
+
+/**
  * Document ready
  */
 document.addEventListener('DOMContentLoaded', function() {

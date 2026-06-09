@@ -25,7 +25,7 @@ class User {
      * @return array|null Thông tin user hoặc null nếu không tìm thấy
      */
     public function getById($id) {
-        $sql = "SELECT id, username, email, fullname, phone, address, role FROM users WHERE id = ?";
+        $sql = "SELECT id, username, email, password, fullname, phone, address, role FROM users WHERE id = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$id]);
         return $stmt->fetch();

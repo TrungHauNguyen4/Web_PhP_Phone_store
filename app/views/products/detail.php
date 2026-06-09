@@ -16,96 +16,111 @@
 include APP_PATH . '/views/layouts/header.php';
 ?>
 
-<div class="container">
-    <div class="card mb-4">
-        <div class="card-body">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
-                <!-- Product Image -->
-                <div style="background: var(--gray-100); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; min-height: 400px; overflow: hidden;">
+<div class="container my-5">
+    <div class="row">
+        <!-- Product Image -->
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body d-flex align-items-center justify-content-center" style="min-height: 500px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
                     <?php if ($product['image']): ?>
                         <img src="<?php echo getBaseUrl(); ?>/assets/images/<?php echo escape($product['image']); ?>"
                              alt="<?php echo escape($product['name']); ?>"
-                             style="max-width: 100%; max-height: 400px; object-fit: contain;">
+                             class="img-fluid"
+                             style="max-height: 450px; object-fit: contain;">
                     <?php else: ?>
-                        <span style="font-size: 5rem;">📱</span>
+                        <div class="text-center">
+                            <span style="font-size: 8rem;">📱</span>
+                            <p class="text-muted mt-3">Không có hình ảnh</p>
+                        </div>
                     <?php endif; ?>
                 </div>
+            </div>
+        </div>
 
-                <!-- Product Info -->
-                <div>
-                    <h1 class="mb-3"><?php echo escape($product['name']); ?></h1>
+        <!-- Product Info -->
+        <div class="col-lg-6">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h1 class="display-5 fw-bold mb-3"><?php echo escape($product['name']); ?></h1>
 
-                    <div style="background: var(--gray-50); padding: 1.5rem; border-radius: var(--radius-lg); margin-bottom: 2rem; border: 1px solid var(--border-color);">
-                        <p style="font-size: 2.5rem; color: var(--primary-color); font-weight: 800; margin: 0;">
+                    <!-- Price -->
+                    <div class="alert alert-primary mb-4" style="background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); border: none;">
+                        <p class="h2 mb-0 text-white fw-bold">
                             <?php echo formatPrice($product['price']); ?> VNĐ
                         </p>
                     </div>
 
+                    <!-- Specifications Grid -->
                     <div class="mb-4">
-                        <h3 class="mb-3">Thông số kỹ thuật</h3>
-                        <table class="table-container" style="box-shadow: none; border: 1px solid var(--border-color);">
-                            <tbody>
-                                <tr>
-                                    <td style="font-weight: 600; width: 150px;">Hãng:</td>
-                                    <td><?php echo escape($product['brand'] ?? 'N/A'); ?></td>
-                                </tr>
-                                <tr>
-                                    <td style="font-weight: 600;">Chip:</td>
-                                    <td><?php echo escape($product['cpu'] ?? 'N/A'); ?></td>
-                                </tr>
-                                <tr>
-                                    <td style="font-weight: 600;">Bộ nhớ trong:</td>
-                                    <td><?php echo escape($product['bo_nho_trong'] ?? 'N/A'); ?></td>
-                                </tr>
-                                <tr>
-                                    <td style="font-weight: 600;">Pin:</td>
-                                    <td><?php echo escape($product['pin'] ?? 'N/A'); ?></td>
-                                </tr>
-                                <tr>
-                                    <td style="font-weight: 600;">Số lượng:</td>
-                                    <td>
-                                        <?php if ($product['quantity'] > 0): ?>
-                                            <span class="alert alert-success" style="display: inline-block; padding: 0.25rem 0.75rem; margin: 0;">
-                                                Còn hàng (<?php echo $product['quantity']; ?>)
-                                            </span>
-                                        <?php else: ?>
-                                            <span class="alert alert-danger" style="display: inline-block; padding: 0.25rem 0.75rem; margin: 0;">
-                                                Hết hàng
-                                            </span>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <h4 class="mb-3 fw-bold">Thông số kỹ thuật</h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded">
+                                    <small class="text-muted d-block mb-1">Hãng</small>
+                                    <strong><?php echo escape($product['brand'] ?? 'N/A'); ?></strong>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded">
+                                    <small class="text-muted d-block mb-1">Chip</small>
+                                    <strong><?php echo escape($product['cpu'] ?? 'N/A'); ?></strong>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded">
+                                    <small class="text-muted d-block mb-1">Bộ nhớ trong</small>
+                                    <strong><?php echo escape($product['bo_nho_trong'] ?? 'N/A'); ?></strong>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 bg-light rounded">
+                                    <small class="text-muted d-block mb-1">Pin</small>
+                                    <strong><?php echo escape($product['pin'] ?? 'N/A'); ?></strong>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="p-3 bg-light rounded">
+                                    <small class="text-muted d-block mb-1">Số lượng</small>
+                                    <?php if ($product['quantity'] > 0): ?>
+                                        <span class="badge bg-success fs-6">Còn hàng (<?php echo $product['quantity']; ?>)</span>
+                                    <?php else: ?>
+                                        <span class="badge bg-danger fs-6">Hết hàng</span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                    <!-- Description -->
                     <div class="mb-4">
-                        <h3 class="mb-3">Mô tả</h3>
-                        <p style="line-height: 1.8; color: var(--text-light);"><?php echo escape($product['description']); ?></p>
+                        <h4 class="mb-3 fw-bold">Mô tả</h4>
+                        <p class="text-secondary" style="line-height: 1.8;"><?php echo escape($product['description']); ?></p>
                     </div>
 
+                    <!-- Add to Cart Button -->
                     <?php if ($product['quantity'] > 0): ?>
-                        <form id="addToCartForm" method="POST" action="<?php echo getBaseUrl(); ?>/?page=cart&action=add" class="d-flex gap-2 no-validate">
+                        <form method="POST" action="<?php echo getBaseUrl(); ?>/?page=cart&action=add">
                             <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                             <input type="hidden" name="quantity" value="1">
-                            <button type="submit" class="btn btn-success btn-lg w-100">
+                            <button type="submit" class="btn btn-success btn-lg w-100 fw-bold">
                                 🛒 Thêm vào giỏ hàng
                             </button>
                         </form>
                     <?php else: ?>
-                        <button disabled class="btn btn-secondary btn-lg w-100" style="cursor: not-allowed; opacity: 0.6;">
+                        <button disabled class="btn btn-secondary btn-lg w-100 fw-bold" style="cursor: not-allowed; opacity: 0.6;">
                             Hết hàng
                         </button>
                     <?php endif; ?>
                 </div>
             </div>
-
-            <div class="mt-4">
-                <a href="<?php echo getBaseUrl(); ?>/?page=products" class="btn btn-secondary">
-                    ← Quay lại danh sách sản phẩm
-                </a>
-            </div>
         </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="mt-4">
+        <a href="<?php echo getBaseUrl(); ?>/?page=products" class="btn btn-outline-secondary">
+            ← Quay lại danh sách sản phẩm
+        </a>
     </div>
 </div>
 

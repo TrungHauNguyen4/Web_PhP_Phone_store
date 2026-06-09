@@ -27,7 +27,12 @@ include APP_PATH . '/views/layouts/header.php';
 
                         <div class="mb-3">
                             <label for="password" class="form-label">Mật khẩu</label>
-                            <input type="password" id="password" name="password" class="form-control" required>
+                            <div class="input-group">
+                                <input type="password" id="password" name="password" class="form-control" required>
+                                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('password', this)">
+                                    👁️
+                                </button>
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100 btn-lg">Đăng nhập</button>

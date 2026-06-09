@@ -74,17 +74,32 @@ include APP_PATH . '/views/layouts/header.php';
 
                 <div class="mb-3">
                     <label for="current_password" class="form-label">Mật khẩu hiện tại</label>
-                    <input type="password" id="current_password" name="current_password" class="form-control">
+                    <div class="input-group">
+                        <input type="password" id="current_password" name="current_password" class="form-control">
+                        <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('current_password', this)">
+                            👁️
+                        </button>
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="new_password" class="form-label">Mật khẩu mới</label>
-                    <input type="password" id="new_password" name="new_password" class="form-control" minlength="6">
+                    <div class="input-group">
+                        <input type="password" id="new_password" name="new_password" class="form-control" minlength="6">
+                        <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('new_password', this)">
+                            👁️
+                        </button>
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="confirm_password" class="form-label">Xác nhận mật khẩu mới</label>
-                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" minlength="6">
+                    <div class="input-group">
+                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" minlength="6">
+                        <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('confirm_password', this)">
+                            👁️
+                        </button>
+                    </div>
                 </div>
 
                 <div class="d-flex gap-2 mt-4">

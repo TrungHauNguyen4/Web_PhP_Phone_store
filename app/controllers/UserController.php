@@ -62,7 +62,7 @@ class UserController extends Controller {
             $email = trim($this->input('email'));
             $current_password = trim($this->input('current_password'));
             $new_password = trim($this->input('new_password'));
-            $confirm_password = trim($this->input('password_confirm'));
+            $confirm_password = trim($this->input('confirm_password'));
             
             // Validate thông tin cơ bản
             if (empty($fullname)) {
