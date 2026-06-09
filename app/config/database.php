@@ -8,7 +8,18 @@
  * - Áp dụng Singleton pattern để đảm bảo chỉ có một kết nối duy nhất
  */
 
-// Cấu hình kết nối database
+// ============== CẤU HÌNH CŨ (COMMENT LẠI) ==============
+// define('DB_DRIVER', 'mysql');
+// define('DB_HOST', 'old-host.com');
+// define('DB_PORT', '3306');
+// define('DB_NAME', 'old_database');
+// define('DB_USER', 'old_user');
+// define('DB_PASSWORD', 'old_password');
+// define('DB_CHARSET', 'utf8mb4');
+// define('DB_DSN', 'mysql:host=old-host.com;port=3306;dbname=old_database;charset=utf8mb4');
+// =====================================================
+
+// ============== CẤU HÌNH HIỆN TẠI (XAMPP) ==============
 define('DB_DRIVER', 'mysql'); // Loại database driver
 define('DB_HOST', 'localhost'); // Địa chỉ host database
 define('DB_PORT', '3306'); // Port kết nối database
@@ -16,9 +27,9 @@ define('DB_NAME', 'laptop_store'); // Tên database
 define('DB_USER', 'root'); // Tên người dùng database
 define('DB_PASSWORD', ''); // Mật khẩu database (trống cho XAMPP mặc định)
 define('DB_CHARSET', 'utf8mb4'); // Bộ ký tự (hỗ trợ tiếng Việt và emoji)
-
 // Chuỗi DSN (Data Source Name) cho PDO MySQL
 define('DB_DSN', 'mysql:host=localhost;port=3306;dbname=laptop_store;charset=utf8mb4');
+// =====================================================
 
 /**
  * Class Database - Quản lý kết nối database
