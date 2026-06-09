@@ -40,7 +40,7 @@ if (isLoggedIn()) {
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="<?php echo getBaseUrl(); ?>/?page=home">
-                � Phone Store
+                <img src="<?php echo getAssetUrl('images/logophonestore.png'); ?>" alt="Phone Store Logo" style="height: 40px;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -104,3 +104,5 @@ if (isLoggedIn()) {
                     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             <?php endif; ?>
+
+
