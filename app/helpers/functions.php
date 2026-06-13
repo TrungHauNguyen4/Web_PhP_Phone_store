@@ -28,7 +28,12 @@ function redirect($url) {
  * @return array|null Thông tin user hoặc null nếu chưa đăng nhập
  */
 function getCurrentUser() {
-    return $_SESSION['user'] ?? null;
+    if (!isLoggedIn()) return null;
+    return [
+        'id' => $_SESSION['user_id'],
+        'username' => $_SESSION['username'],
+        'role' => $_SESSION['role']
+    ];
 }
 
 /**

@@ -64,7 +64,7 @@ $products = $productModel->getAllIncludingSoldOut();
                             </td>
                             <td class="text-center">
                                 <a href="<?php echo getBaseUrl(); ?>/?page=admin&action=products&task=edit&id=<?php echo $product['id']; ?>" class="btn btn-sm btn-outline-primary me-1">✏️ Sửa</a>
-                                <a href="<?php echo getBaseUrl(); ?>/?page=admin&action=products&task=delete&id=<?php echo $product['id']; ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Bạn có chắc muốn xóa?');">🗑️ Xóa</a>
+                                <a href="<?php echo getBaseUrl(); ?>/?page=admin&action=products&task=delete&id=<?php echo $product['id']; ?>" class="btn btn-sm btn-outline-danger">🗑️ Xóa</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

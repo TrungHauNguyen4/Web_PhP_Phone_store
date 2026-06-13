@@ -10,15 +10,15 @@
 
 // Cấu hình kết nối database
 define('DB_DRIVER', 'mysql'); // Loại database driver
-define('DB_HOST', 'localhost'); // Địa chỉ host database
+define('DB_HOST', '127.0.0.1'); // Địa chỉ host database (Dùng 127.0.0.1 thay cho localhost để ổn định hơn)
 define('DB_PORT', '3306'); // Port kết nối database
-define('DB_NAME', 'laptop_store'); // Tên database
+define('DB_NAME', 'laptop_store'); // Tên database người dùng sử dụng
 define('DB_USER', 'root'); // Tên người dùng database
 define('DB_PASSWORD', ''); // Mật khẩu database (trống cho XAMPP mặc định)
 define('DB_CHARSET', 'utf8mb4'); // Bộ ký tự (hỗ trợ tiếng Việt và emoji)
 
-// Chuỗi DSN (Data Source Name) cho PDO MySQL
-define('DB_DSN', 'mysql:host=localhost;port=3306;dbname=laptop_store;charset=utf8mb4');
+// Chuỗi DSN (Data Source Name) cho PDO MySQL - Tự động sử dụng các hằng số trên
+define('DB_DSN', DB_DRIVER . ':host=' . DB_HOST . ';port=' . DB_PORT . ';dbname=' . DB_NAME . ';charset=' . DB_CHARSET);
 
 /**
  * Class Database - Quản lý kết nối database
@@ -40,16 +40,16 @@ class Database {
      */
     private function __construct() {
         try {
-            $this->connection = new PDO(
-                DB_DSN,
-                DB_USER,
-                DB_PASSWORD,
-                array(
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Bật chế độ báo lỗi bằng exception
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Mặc định trả về associative array
-                    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci" // Thiết lập charset cho kết nối
-                )
+            $options = array(
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             );
+
+            // Thiết lập charset utf8mb4
+            // Sử dụng 1002 thay cho PDO::MYSQL_ATTR_INIT_COMMAND để tránh lỗi Deprecated trên PHP 8.5+
+            $options[1002] = "SET NAMES utf8mb4";
+
+            $this->connection = new PDO(DB_DSN, DB_USER, DB_PASSWORD, $options);
         } catch (PDOException $e) {
             die("Connection Error: " . $e->getMessage());
         }

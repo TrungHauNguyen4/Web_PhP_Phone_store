@@ -44,7 +44,7 @@ include APP_PATH . '/views/layouts/header.php';
                         </div>
                     </div>
                 <?php endif; ?>
-                <div class="carousel-caption d-none d-md-block">
+                <div class="carousel-caption">
                     <?php if ($product['id'] > 0): ?>
                         <h1 class="display-4 fw-bold"><?php echo escape($product['name']); ?></h1>
                         <p class="lead">

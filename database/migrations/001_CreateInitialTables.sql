@@ -6,8 +6,8 @@
 -- ===================================================
 
 -- Create database if not exists
-CREATE DATABASE IF NOT EXISTS laptop_store;
-USE laptop_store;
+CREATE DATABASE IF NOT EXISTS phone_store;
+USE phone_store;
 
 -- ===================================================
 -- Table: users

@@ -10,7 +10,7 @@
  */
 
 // Cấu hình hiển thị lỗi tùy theo môi trường
-if ($_ENV['ENVIRONMENT'] ?? 'development' === 'development') {
+if (($_ENV['ENVIRONMENT'] ?? 'development') === 'development') {
     // Môi trường development: hiển thị tất cả lỗi
     error_reporting(E_ALL);
     ini_set('display_errors', 1);

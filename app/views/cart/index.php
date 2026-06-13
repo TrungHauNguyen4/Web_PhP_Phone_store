@@ -44,10 +44,10 @@ include APP_PATH . '/views/layouts/header.php';
                     <thead class="table-light">
                         <tr>
                             <th>Sản phẩm</th>
-                            <th class="text-center" style="width: 150px;">Giá</th>
-                            <th class="text-center" style="width: 150px;">Số lượng</th>
-                            <th class="text-center" style="width: 150px;">Tổng cộng</th>
-                            <th class="text-center" style="width: 100px;">Thao tác</th>
+                            <th class="text-center">Giá</th>
+                            <th class="text-center">Số lượng</th>
+                            <th class="text-center">Tổng cộng</th>
+                            <th class="text-center">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,7 +70,7 @@ include APP_PATH . '/views/layouts/header.php';
                                     <?php echo formatPrice($item['subtotal']); ?> VNĐ
                                 </td>
                                 <td class="text-center">
-                                    <a href="<?php echo getBaseUrl(); ?>/?page=cart&action=remove&id=<?php echo $item['product']['id']; ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">🗑️ Xóa</a>
+                                    <a href="<?php echo getBaseUrl(); ?>/?page=cart&action=remove&id=<?php echo $item['product']['id']; ?>" class="btn btn-sm btn-outline-danger">🗑️ Xóa</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

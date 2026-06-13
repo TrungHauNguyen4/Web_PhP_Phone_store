@@ -97,7 +97,7 @@ $productModel = new Product();
                         <td class="text-center">
                             <a href="<?php echo getBaseUrl(); ?>/?page=admin&action=orders&task=view&id=<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-primary me-1">👁️ Xem</a>
                             <?php if ($order['status'] === 'completed' || $order['status'] === 'cancelled'): ?>
-                                <form method="POST" action="<?php echo getBaseUrl(); ?>/?page=admin&action=orders" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này? Hành động này không thể hoàn tác.');">
+                                <form method="POST" action="<?php echo getBaseUrl(); ?>/?page=admin&action=orders" class="d-inline">
                                     <input type="hidden" name="delete_order" value="1">
                                     <input type="hidden" name="order_id" value="<?php echo $order['id']; ?>">
                                     <button type="submit" class="btn btn-sm btn-outline-danger">🗑️ Xóa</button>

@@ -64,8 +64,8 @@ $users = $userModel->getAll();
                             <td class="text-center">
                                 <?php if ($user['id'] !== $_SESSION['user_id']): ?>
                                     <a href="<?php echo getBaseUrl(); ?>/?page=admin&action=users&task=edit&id=<?php echo $user['id']; ?>" class="btn btn-sm btn-outline-primary me-1">✏️ Sửa</a>
-                                    <a href="<?php echo getBaseUrl(); ?>/?page=admin&action=users&task=reset_password&id=<?php echo $user['id']; ?>" class="btn btn-sm btn-outline-warning me-1">🔐 Reset mật khẩu</a>
-                                    <form method="POST" action="<?php echo getBaseUrl(); ?>/?page=admin&action=users" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này? Hành động này không thể hoàn tác.');">
+                                    <a href="<?php echo getBaseUrl(); ?>/?page=admin&action=users&task=reset_password&id=<?php echo $user['id']; ?>" class="btn btn-sm btn-outline-warning me-1">🔐 Reset</a>
+                                    <form method="POST" action="<?php echo getBaseUrl(); ?>/?page=admin&action=users" class="d-inline">
                                         <input type="hidden" name="delete_user" value="1">
                                         <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
                                         <button type="submit" class="btn btn-sm btn-outline-danger">🗑️ Xóa</button>

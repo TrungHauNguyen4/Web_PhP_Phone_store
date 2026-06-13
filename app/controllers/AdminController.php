@@ -162,7 +162,7 @@ class AdminController extends Controller {
                 
                 // Xử lý upload ảnh
                 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-                    $uploadDir = APP_PATH . '/../public/assets/images/';
+                    $uploadDir = UPLOADS_PATH . '/';
                     $fileTmpPath = $_FILES['image']['tmp_name'];
                     $fileName = $_FILES['image']['name'];
                     $fileSize = $_FILES['image']['size'];

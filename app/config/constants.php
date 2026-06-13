@@ -17,7 +17,11 @@
 // Thông tin ứng dụng
 define('APP_NAME', 'Laptop Store'); // Tên ứng dụng
 define('APP_VERSION', '1.0.0'); // Phiên bản ứng dụng
-define('APP_URL', 'http://localhost:3000'); // URL cơ sở của ứng dụng
+
+// Tự động xác định APP_URL để chạy được trên điện thoại và nhiều môi trường
+$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost:3000';
+define('APP_URL', $protocol . '://' . $host);
 
 // Đường dẫn hệ thống (ROOT_PATH được định nghĩa trong public/index.php)
 if (!defined('ROOT_PATH')) {
@@ -25,7 +29,7 @@ if (!defined('ROOT_PATH')) {
 }
 define('APP_PATH', ROOT_PATH . '/app'); // Đường dẫn thư mục app
 define('PUBLIC_PATH', ROOT_PATH . '/public'); // Đường dẫn thư mục public
-define('UPLOADS_PATH', PUBLIC_PATH . '/uploads'); // Đường dẫn thư mục uploads
+define('UPLOADS_PATH', PUBLIC_PATH . '/assets/images'); // Đường dẫn thư mục lưu ảnh sản phẩm
 
 // Cấu hình session
 define('SESSION_TIMEOUT', 3600); // Thời gian timeout của session (1 giờ = 3600 giây)
